@@ -1,0 +1,118 @@
+-----------------------
+-- cl-lastfm --
+-----------------------
+
+A Common Lisp wrapper around Last.fm 2.0 web service.
+
+http://www.last.fm
+
+
+
+** API **
+
+The Last.fm Web Services API is described here :
+http://www.lastfm.fr/api
+
+cl-lastfm implements theses features :
+
+*  Album
+[ ] album.addTags
+[x] album.getInfo
+[ ] album.getTags
+[ ] album.removeTag
+[x] album.search
+* Artist
+[ ] artist.addTags
+[x] artist.getEvents
+[x] artist.getInfo
+[x] artist.getSimilar
+[ ] artist.getTags
+[x] artist.getTopAlbums
+[x] artist.getTopFans
+[x] artist.getTopTags
+[x] artist.getTopTracks
+[ ] artist.removeTag
+[x] artist.search
+[ ] artist.share
+* Auth
+[ ] auth.getMobileSession
+[ ] auth.getSession
+[ ] auth.getToken
+[ ] auth.getWebSession
+* Event
+[ ] event.attend
+[ ] event.getInfo
+[ ] event.share
+* Geo
+[x] geo.getEvents
+[x] geo.getTopArtists
+[x] geo.getTopTracks
+* Group
+[ ] group.getWeeklyAlbumChart
+[ ] group.getWeeklyArtistChart
+[ ] group.getWeeklyChartList
+[ ] group.getWeeklyTrackChart
+* Library
+[ ] library.addAlbum
+[ ] library.addArtist
+[ ] library.addTrack
+[ ] library.getAlbums
+[ ] library.getArtists
+[ ] library.getTracks
+* Playlist
+[ ] playlist.addTrack
+[ ] playlist.create
+[ ] playlist.fetch
+* Tag
+[ ] tag.getSimilar
+[ ] tag.getTopAlbums
+[ ] tag.getTopArtists
+[ ] tag.getTopTags
+[ ] tag.getTopTracks
+[ ] tag.getWeeklyArtistChart
+[ ] tag.getWeeklyChartList
+[ ] tag.search
+* Tasteometer
+[ ] tasteometer.compare
+* Track
+[ ] track.addTags
+[ ] track.ban
+[ ] track.getInfo
+[ ] track.getSimilar
+[ ] track.getTags
+[ ] track.getTopFans
+[ ] track.getTopTags
+[ ] track.love
+[ ] track.removeTag
+[ ] track.search
+[ ] track.share
+* User
+[x] user.getEvents
+[x] user.getFriends
+[ ] user.getInfo
+[ ] user.getLovedTracks
+[ ] user.getNeighbours
+[ ] user.getPastEvents
+[ ] user.getPlaylists
+[ ] user.getRecentTracks
+[ ] user.getRecommendedEvents
+[ ] user.getTopAlbums
+[ ] user.getTopArtists
+[ ] user.getTopTags
+[ ] user.getTopTracks
+[ ] user.getWeeklyAlbumChart
+[ ] user.getWeeklyArtistChart
+[ ] user.getWeeklyChartList
+[ ] user.getWeeklyTrackChart
+
+
+
+
+
+
+Local variables:
+mode: outline
+paragraph-separate: "[  ^L]*$"
+end:
+
+
