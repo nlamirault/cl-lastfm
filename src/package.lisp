@@ -50,6 +50,21 @@
            #:user-get-friends
            #:user-get-loved-tracks
            #:user-get-neighbours
+           #:user-get-top-albums
+           #:user-get-top-artists
+           #:user-get-weekly-album-chart
+           #:user-get-weekly-artist-chart
+           #:user-get-weekly-chart-list
+           #:user-get-weekly-track-chart
+
+
+           ;; Group
+           #:group-get-members 
+           #:group-get-weekly-album-chart
+           #:group-get-weekly-artist-chart
+           #:group-get-weekly-chart-list
+           #:group-get-weekly-track-chart
+
 
            ;; conditions
 
@@ -66,6 +81,9 @@
 
            )
   (:documentation "Common Lisp wrapper to Last.fm web service.
+See more explanation from the @a[http://www.lastfm.fr/api]{website}.
+It has been tested under @a[http://www.sbcl.org]{SBCL}
+ 
 @begin[Albums]{section}
 @aboutfun{album-get-info}
 @aboutfun{album-search}
@@ -93,6 +111,20 @@
 @aboutfun{user-get-friends}
 @aboutfun{user-get-loved-tracks}
 @aboutfun{user-get-neighbours}
+@aboutfun{user-get-top-albums}
+@aboutfun{user-get-top-artists}
+@aboutfun{user-get-weekly-album-chart}
+@aboutfun{user-get-weekly-artist-chart}
+@aboutfun{user-get-weekly-chart-list}
+@aboutfun{user-get-weekly-track-chart}
+@end{section}
+
+@begin[Group]{section}
+@aboutfun{group-get-members}
+@aboutfun{group-get-weekly-album-chart}
+@aboutfun{group-get-weekly-artist-chart}
+@aboutfun{group-get-weekly-chart-list}
+@aboutfun{group-get-weekly-track-chart}
 @end{section}
 
 "))

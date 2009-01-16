@@ -5,7 +5,7 @@
 ;;;; Purpose:       lastfm specials variables.
 ;;;; Programmer:    Nicolas Lamirault <nicolas.lamirault@gmail.com>
 ;;;;
-;;;; This file, part of cl-lastfm, is Copyright (c) 2008 by Nicolas Lamirault
+;;;; This file, part of cl-lastfm, is Copyright (c) 2008, 2009 by Nicolas Lamirault
 ;;;;
 ;;;; cl-lastfm users are granted the rights to distribute and use this software
 ;;;; as governed by the terms of the MIT License :
@@ -17,12 +17,20 @@
 (in-package :cl-lastfm)
 
 
-;; ------------------
-;; HTTP Web Services
-;; ------------------
 
-(unless (boundp '+last-fm-ws+)
-  (defconstant +last-fm-ws+ "http://ws.audioscrobbler.com/2.0/"))
+(eval-when (:compile-toplevel :load-toplevel :execute)
+
+  (unless (boundp '+last-fm-ws+)
+    (defconstant +last-fm-ws+ "http://ws.audioscrobbler.com/2.0/"
+      "The LastFM web service."))
+
+  (defmacro def-lastfm-uri (name uri)
+    `(unless (boundp ',name)
+       (defconstant ,name
+         (concatenate 'string
+                      +last-fm-ws+
+                      ,uri)))))
+
 
 
 ;; ---------
@@ -161,6 +169,103 @@
     (concatenate 'string
                  +last-fm-ws+
                  "?method=user.getneighbours&api_key=~A")))
+
+
+
+(unless (boundp '+user-get-top-albums+)
+  (defconstant +user-get-top-albums+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=user.gettopalbums&api_key=~A")))
+
+
+(unless (boundp '+user-get-top-artists+)
+  (defconstant +user-get-top-artists+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=user.gettopartists&api_key=~A")))
+
+
+(unless (boundp '+user-get-top-tags+)
+  (defconstant +user-get-top-tags+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=user.gettoptags&api_key=~A")))
+
+
+(unless (boundp '+user-get-top-tracks+)
+  (defconstant +user-get-top-tracks+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=user.gettoptracks&api_key=~A")))
+
+
+(def-lastfm-uri +user-get-recent-tracks+
+    "?method=user.getrecenttracks&api_key=~A")
+
+(def-lastfm-uri +user-get-shouts+
+    "?method=user.getshouts&api_key=~A")
+
+(def-lastfm-uri +user-get-weekly-album-chart+
+    "?method=user.getweeklyalbumchart&api_key=~A")
+
+(def-lastfm-uri +user-get-weekly-artist-chart+
+    "?method=user.getweeklyartistchart&api_key=~A")
+
+(def-lastfm-uri +user-get-weekly-chart-list+
+    "?method=user.getweeklychartlist&api_key=~A")
+
+(def-lastfm-uri +user-get-weekly-track-chart+
+    "?method=user.getweeklytrackchart&api_key=~A")
+
+
+
+
+
+;; Group
+
+
+(unless (boundp '+group-get-members+)
+  (defconstant +group-get-members+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=group.getmembers&api_key=~A")))
+
+
+(unless (boundp '+group-get-weekly-album-chart+)
+  (defconstant +group-get-weekly-album-chart+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=group.getweeklyalbumchart&api_key=~A")))
+
+
+(unless (boundp '+group-get-weekly-artist-chart+)
+  (defconstant +group-get-weekly-artist-chart+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=group.getweeklyartistchart&api_key=~A")))
+
+
+(unless (boundp '+group-get-weekly-chart-list+)
+  (defconstant +group-get-weekly-chart-list+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=group.getweeklychartlist&api_key=~A")))
+
+
+(unless (boundp '+group-get-weekly-track-chart+)
+  (defconstant +group-get-weekly-track-chart+
+    (concatenate 'string
+                 +last-fm-ws+
+                 "?method=group.getweeklytrackchart&api_key=~A")))
+
+
+
+
+
+
+
+
 
 
 

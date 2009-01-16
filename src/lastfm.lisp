@@ -16,6 +16,8 @@
 
 (in-package :cl-lastfm)
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Albums
@@ -55,8 +57,10 @@ ISO 639 alpha-2 code}
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[album-name]{The album name in question}
-@arg[limit]{Limit the number of albums returned at one time. Default (maximum) is 30}
-@arg[page]{Scan into the results by specifying a page number. Defaults to first page}
+@arg[limit]{Limit the number of albums returned at one time. Default (maximum) 
+is 30}
+@arg[page]{Scan into the results by specifying a page number. Defaults to 
+first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -216,8 +220,10 @@ relevance.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
-@arg[limit]{Limit the number of artists returned at one time. Default (maximum) is 30}
-@arg[page]{Scan into the results by specifying a page number. Defaults to first page}
+@arg[limit]{Limit the number of artists returned at one time. Default 
+(maximum) is 30}
+@arg[page]{Scan into the results by specifying a page number. Defaults to 
+first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -248,9 +254,12 @@ This service does not require authentication.}
   "@short{Get all events in a specific location by country or city name.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[location]{Specifies a location to retrieve events for (service returns nearby events by default}
-@arg[lat]{Specifies a latitude value to retrieve events for (service returns nearby events by default}
-@arg[long]{Specifies a longitude value to retrieve events for (service returns nearby events by default)}
+@arg[location]{Specifies a location to retrieve events for (service returns 
+nearby events by default}
+@arg[lat]{Specifies a latitude value to retrieve events for (service returns 
+nearby events by default}
+@arg[long]{Specifies a longitude value to retrieve events for (service returns 
+nearby events by default)}
 @arg[page]{Display more results by pagination}
 @arg[distance]{Find events within a specified distance}
 @see-condition{lastfm-request-error}
@@ -277,7 +286,8 @@ This service does not require authentication}
   "@short{Get the most popular artists on Last.fm by country.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[country-name]{A country name, as defined by the ISO 3166-1 country names standard}
+@arg[country-name]{A country name, as defined by the ISO 3166-1 country names 
+standard}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -293,8 +303,10 @@ This service does not require authentication}
   "@short{Get the most popular tracks on Last.fm by country .
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[country-name]{A country name, as defined by the ISO 3166-1 country names standard}
-@arg[location]{A metro name, to fetch the charts for (must be within the country specified)}
+@arg[country-name]{A country name, as defined by the ISO 3166-1 country names 
+standard}
+@arg[location]{A metro name, to fetch the charts for (must be within the country 
+specified)}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -320,7 +332,8 @@ This service does not require authentication}
 
 
 (defun user-get-events (api-key user)
-  "@short{Get a list of upcoming events that this user is attending. Easily integratable into calendars, using the ical standard.
+  "@short{Get a list of upcoming events that this user is attending. 
+Easily integratable into calendars, using the ical standard.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user to fetch the events for}
@@ -334,14 +347,14 @@ This service does not require authentication}
     (perform-lastfm-query uri)))
 
 
-
 (defun user-get-friends (api-key user &key limit recenttracks)
   "@short{Get a list of the user's friends on Last.fm
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the friends of}
 @arg[limit]{An integer used to limit the number of friends returned}
-@arg[recenttracks]{Whether or not to include information about friends' recent listening in the response}
+@arg[recenttracks]{Whether or not to include information about friends' recent 
+listening in the response}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -359,7 +372,7 @@ This service does not require authentication}
 
 
 
-(defun user-get-loved-tracks (api-key user &key limit recenttracks)
+(defun user-get-loved-tracks (api-key user)
   "@short{Get the last 50 tracks loved by a user. 
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
@@ -391,5 +404,317 @@ This service does not require authentication}
                 (url-encode-utf8 (format nil "~A" limit))))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
+
+
+
+(defun user-get-top-albums (api-key user &key period)
+    "@short{Get the top albums listened to by a user. You can stipulate a time 
+period. Sends the overall chart by default}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name to fetch top albums for}
+@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+to retrieve top albums for.}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-top-albums+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when period
+        (format stream "&period=~A"
+                (url-encode-utf8 (format nil "~A" period))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+
+(defun user-get-top-artists (api-key user &key period)
+    "@short{Get the top artists listened to by a user. You can stipulate a time 
+period. Sends the overall chart by default.}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name to fetch top artists for}
+@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+to retrieve top albums for.}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-top-artists+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when period
+        (format stream "&period=~A"
+                (url-encode-utf8 (format nil "~A" period))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-top-tags (api-key user &key limit)
+  "@short{Get the top tags used by this user}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name}
+@arg[limit]{The number of tags returned}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-top-tags+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-top-tracks (api-key user &key period)
+    "@short{Get the top tracks listened to by a user. You can stipulate a time 
+period. Sends the overall chart by default. }
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name to fetch top tracks for}
+@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+to retrieve top tracks for.}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-top-tracks+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when period
+        (format stream "&period=~A"
+                (url-encode-utf8 (format nil "~A" period))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-recent-tracks (api-key user &key limit)
+  "@short{Get a list of the recent tracks listened to by this user. Indicates 
+now playing track if the user is currently listening}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name to fetch the recent tracks of}
+@arg[limit]{An integer used to limit the number of tracks returned}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-recent-tracks+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-shouts (api-key user)
+  "@short{Get shouts for this user}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user name to fetch shouts for}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-shouts+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-weekly-album-chart (api-key user &key from to)
+  "@short{Get an album chart for a user profile, for a given date range. 
+If no date range is supplied, it will return the most recent album chart for 
+this user.}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The last.fm username to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-weekly-album-chart+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-weekly-artist-chart (api-key user &key from to)
+  "@short{Get an artist chart for a user profile, for a given date range. 
+If no date range is supplied, it will return the most recent artist chart for 
+this user.}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The last.fm username to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-weekly-artist-chart+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-weekly-chart-list (api-key user)
+  "@short{Get a list of available charts for this user, expressed as date 
+ranges which can be sent to the chart services}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The last.fm username to fetch the charts list for}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-weekly-chart-list+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun user-get-weekly-track-chart (api-key user &key from to)
+  "@short{Get a track chart for a user profile, for a given date range. 
+If no date range is supplied, it will return the most recent track chart 
+for this user}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The last.fm username to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +user-get-weekly-track-chart+ api-key)
+      (format stream "&user=~A" (url-encode-utf8 user))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Groups
+;;
+
+
+(defun group-get-members (api-key group)
+  "@short{Get a list of members for this group.
+This service does not require authentication}
+@arg[api_key]{A Last.fm API key}
+@arg[group]{The group name to fetch the members of}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +group-get-members+ api-key)
+      (format stream "&group=~A" (url-encode-utf8 group))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+  
+
+
+(defun group-get-weekly-album-chart (api-key group &key from to)
+  "@short{Get an album chart for a group, for a given date range. If no date range 
+is supplied, it will return the most recent album chart for this group.}
+@arg[api_key]{A Last.fm API key}
+@arg[group]{The last.fm group name to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +group-get-weekly-album-chart+ api-key)
+      (format stream "&group=~A" (url-encode-utf8 group))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun group-get-weekly-artist-chart (api-key group &key from to)
+  "@short{Get an artist chart for a group, for a given date range. If no date 
+range is supplied, it will return the most recent album chart for this group}
+@arg[api_key]{A Last.fm API key}
+@arg[group]{The last.fm group name to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +group-get-weekly-artist-chart+ api-key)
+      (format stream "&group=~A" (url-encode-utf8 group))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+  
+(defun group-get-weekly-chart-list (api-key group)
+  "@short{Get a list of available charts for this group, expressed as date 
+ranges which can be sent to the chart services}
+@arg[api_key]{A Last.fm API key}
+@arg[group]{The last.fm group name to fetch the charts list for}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +group-get-weekly-chart-list+ api-key)
+      (format stream "&group=~A" (url-encode-utf8 group))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+(defun group-get-weekly-track-chart (api-key group &key from to)
+  "@short{Get a track chart for a group, for a given date range. If no date 
+range is supplied, it will return the most recent album chart for this group}
+@arg[api_key]{A Last.fm API key}
+@arg[group]{The last.fm group name to fetch the charts of}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (let (uri)
+    (with-output-to-string (stream)
+      (format stream +group-get-weekly-track-chart+ api-key)
+      (format stream "&group=~A" (url-encode-utf8 group))
+      (when from
+        (format stream "&from=~A"
+                (url-encode-utf8 (format nil "~A" from))))
+      (when to
+        (format stream "&to=~A"
+                (url-encode-utf8 (format nil "~A" to))))
+      (setf uri (get-output-stream-string stream)))
+    (perform-lastfm-query uri)))
+
+
+
+
 
 
