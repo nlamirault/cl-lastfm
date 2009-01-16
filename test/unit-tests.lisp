@@ -28,3 +28,6 @@
                                   "etc/lift-standard.config")))
     (lift:run-tests :config config-file)))
 
+
+
+
