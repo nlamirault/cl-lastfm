@@ -2,4 +2,21 @@
 -- cl-lastfm --
 ---------------
 
+* Refactoring *
 
+** Macro def-lastfm-constant ** 
+
+A macro which defines a new constant to replace this code:
+
+ (unless (boundp '+artist-get-similar+)
+   (defconstant +artist-get-similar+
+     (concatenate 'string
+                  +last-fm-ws+
+                  "?method=artist.getsimilar&api_key=~A")))
+
+
+
+Local variables:
+mode: outline
+paragraph-separate: "[  ^L]*$"
+end:

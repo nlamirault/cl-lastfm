@@ -48,10 +48,11 @@ cl-lastfm implements theses features :
 [x] geo.getTopArtists
 [x] geo.getTopTracks
 * Group
-[ ] group.getWeeklyAlbumChart
-[ ] group.getWeeklyArtistChart
-[ ] group.getWeeklyChartList
-[ ] group.getWeeklyTrackChart
+[x] group.getmembers
+[x] group.getWeeklyAlbumChart
+[x] group.getWeeklyArtistChart
+[x] group.getWeeklyChartList
+[x] group.getWeeklyTrackChart
 * Library
 [ ] library.addAlbum
 [ ] library.addArtist
@@ -90,23 +91,21 @@ cl-lastfm implements theses features :
 [x] user.getEvents
 [x] user.getFriends
 [ ] user.getInfo
-[ ] user.getLovedTracks
-[ ] user.getNeighbours
+[x] user.getLovedTracks
+[x] user.getNeighbours
 [ ] user.getPastEvents
 [ ] user.getPlaylists
-[ ] user.getRecentTracks
+[x] user.getRecentTracks
 [ ] user.getRecommendedEvents
-[ ] user.getTopAlbums
-[ ] user.getTopArtists
-[ ] user.getTopTags
-[ ] user.getTopTracks
-[ ] user.getWeeklyAlbumChart
-[ ] user.getWeeklyArtistChart
-[ ] user.getWeeklyChartList
-[ ] user.getWeeklyTrackChart
-
-
-
+[x] user.getShouts
+[x] user.getTopAlbums
+[x] user.getTopArtists
+[x] user.getTopTags
+[x] user.getTopTracks
+[x] user.getWeeklyAlbumChart
+[x] user.getWeeklyArtistChart
+[x] user.getWeeklyChartList
+[x] user.getWeeklyTrackChart
 
 
 
