@@ -1,0 +1,53 @@
+<page title="cl-lastfm : A Common Lisp wrapper for LastFM">
+  <p>
+    cl-lastfm is a Common Lisp wrapper around the LastFM web service. 
+    It is developed on <a href="http://www.debian.org"> Debian GNU/Linux </a>, using 
+    <a href="http://www.sbcl.org"> SBCL </a>.
+  </p>
+  <p>
+    cl-lastfm was written
+    by <a href="mailto:nlamirault@gmail.com">Nicolas Lamirault</a> and is available under
+    a <a href="http://www.opensource.org/licenses/mit-license.php"> MIT </a> style license.
+  </p>
+
+  <h3>Installation using asdf-install</h3>
+
+  <h3>Installation using Mudballs</h3>
+
+  <h3>Manual Installation</h3>
+
+  <p>
+    Download a <a href="http://code.google.com/p/cl-lastfm/"> lastfm tarball</a>
+  </p>
+  <p>
+    cl-lastfm needs
+    <a href="http://www.weitz.de/drakma/">Drakma</a>, 
+    <a href="http://www.lichteblau.com/cxml-stp/">cxml-stp</a>,
+    <a href="http://www.weitz.de/url-rewrite/">url-rewrite</a>,
+    <a href="http://common-lisp.net/project/trivial-utf-8/">trivial-utf-8</a>,
+    and their dependencies.
+  </p>
+  <p>
+    <a href="http://www.cliki.net/asdf">ASDF</a> is used for
+    compilation.  Register the .asd file, e.g. by symlinking it,
+    then compile cl-lastfm using <tt>asdf:operate</tt>.
+  </p>
+  <pre>$ ln -sf `pwd`/cl-lastfm.asd /path/to/your/registry/
+* (asdf:operate 'asdf:load-op :cl-lastfm)</pre>
+
+  <h3>Usage</h3>
+  <p>
+    Please refer to the <a href="api/index.html">API documentation</a>.
+There is also a <a href="api/documentation.pdf"> PDF </a> version of the API.
+  </p>
+
+
+  <h3>Recent changes</h3>
+  <p><b>2008-12-19</b></p>
+  <p><b>2008-11-28</b></p>
+  <ul>
+    <li>
+      Project creation.
+    </li>
+  </ul>
+</page>
