@@ -20,11 +20,23 @@
 
 (asdf:oos 'asdf:load-op :atdoc)
 (asdf:oos 'asdf:load-op :cl-lastfm)
-     
-(atdoc:generate-documentation '(:cl-lastfm)
-                              "/tmp/cl-lastfm-atdoc/"
-                              :index-title "cl-lastfm API reference"
-                              :heading "LastFM for Common Lisp"
-                              :css "orange-sans.css"
-                              :single-page-p t)
 
+
+(let* ((path (namestring
+              (asdf:component-relative-pathname (asdf:find-system :cl-lastfm))))
+       (dir (concatenate 'string path "/www/api/")))
+       (ensure-directories-exist dir)
+  (atdoc:generate-html-documentation '(:cl-lastfm)
+                                     dir
+                                     :index-title "cl-lastfm API reference"
+                                     :heading "LastFM for Common Lisp"
+                                     ;;:css "orange-sans.css"
+                                     :single-page-p t
+                                     :include-internal-symbols-p nil)
+  (atdoc:generate-latex-documentation '(:cl-lastfm)
+                                      dir
+                                      :title "cl-lastfm API reference")
+  (atdoc:generate-info-documentation '(:cl-lastfm)
+                                     dir
+                                     :name "cl-lastfm"
+                                     :title "cl-lastfm API referenc"))
