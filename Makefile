@@ -3,6 +3,9 @@
 #
 
 
+SBCL=`which sbcl-git`
+
+
 all: lastfm
 
 dist:
@@ -10,11 +13,11 @@ dist:
 
 doc:
 	@echo "Make API documentation"
-	sbcl-git --script misc/lastfm-atdoc.lisp
+	$(SBCL) --script misc/lastfm-atdoc.lisp
 
 cover:
 	@echo "Code coverage"
-	sbcl-git --dynamic-space-size 5000 --script misc/lastfm-cover.lisp
+	$(SBCL) --dynamic-space-size 5000 --script misc/lastfm-cover.lisp
 
 www: www/index.xsl www/index.css
 	@echo "Make website"
