@@ -18,11 +18,24 @@
 
 
 
+;; Macro for LastFM requests.
+
+
+;; (defmacro with-lastfm-uri ((uri) stream &body body)
+;;   "Macro which creates an HTTP url, add parameters executing body,
+;; and performs the HTTP request defined by uri."
+;;   `(let (,uri)
+;;      (with-output-to-string (,stream)
+;;        ,@body
+;;        (setf ,uri (get-output-stream-string ,stream)))
+;;     (perform-lastfm-query ,uri)))
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Albums
 ;;
-
 
 
 (defun album-get-info (api-key &key artist-name album-name mbid lang)
@@ -50,6 +63,19 @@ ISO 639 alpha-2 code}
         (format stream "&lang=~A" (url-encode-utf8 lang)))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
+
+;;;   (with-lastfm-uri (uri) stream
+;;;     (format stream +album-get-info+ api-key)
+;;;       (when artist-name
+;;;         (format stream "&artist=~A" (url-encode-utf8 artist-name)))
+;;;       (when album-name
+;;;         (format stream "&album=~A" (url-encode-utf8 album-name)))
+;;;       (when mbid
+;;;         (format stream "&mbid=~A" (url-encode-utf8 mbid)))
+;;;       (when lang
+;;;         (format stream "&lang=~A" (url-encode-utf8 lang))))
+
+
     
 
 (defun album-search (api-key album-name &key (limit 30) (page 1))
