@@ -12,12 +12,10 @@
 
   <h3>Installation using asdf-install</h3>
 
-  <h3>Installation using Mudballs</h3>
-
   <h3>Manual Installation</h3>
 
   <p>
-    Download a <a href="http://code.google.com/p/cl-lastfm/"> lastfm tarball</a>
+    Download a <a href="#"> lastfm tarball</a>
   </p>
   <p>
     cl-lastfm needs
@@ -41,13 +39,16 @@
 There is also a <a href="api/documentation.pdf"> PDF </a> version of the API.
   </p>
 
+  <h3>Unit tests</h3>
+  <p><a href="coverage/cover-index.html"> Code coverage </a> report performed
+  by sb-cover</p>
 
   <h3>Recent changes</h3>
-  <p><b>2008-12-19</b></p>
+  <p><b>2009-xx-xx</b></p>
   <p><b>2008-11-28</b></p>
   <ul>
     <li>
-      Project creation.
+      Project creation. <a href="http://code.google.com/p/cl-audioscrobbler">cl-audioscrobbler</a> becomes deprecated.
     </li>
   </ul>
 </page>

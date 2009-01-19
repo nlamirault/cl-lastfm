@@ -22,7 +22,8 @@
 
 (defun run-cl-lastfm-test ()
   "Run the CL-LASTFM unit tests."
-  (setf cl-ppcre:*regex-char-code-limit* 256)
+  (setq cl-ppcre:*regex-char-code-limit* 256
+        cl-ppcre:*use-bmh-matchers* nil)
   (let ((config-file (concatenate 'string
                                   *cl-lastfm-path*
                                   "etc/lift-standard.config")))

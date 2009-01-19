@@ -52,6 +52,10 @@
            #:user-get-neighbours
            #:user-get-top-albums
            #:user-get-top-artists
+           #:user-get-top-tracks
+           #:user-get-top-tags
+           #:user-get-recent-tracks
+           #:user-get-shouts
            #:user-get-weekly-album-chart
            #:user-get-weekly-artist-chart
            #:user-get-weekly-chart-list
@@ -113,6 +117,10 @@ It has been tested under @a[http://www.sbcl.org]{SBCL}
 @aboutfun{user-get-neighbours}
 @aboutfun{user-get-top-albums}
 @aboutfun{user-get-top-artists}
+@aboutfun{user-get-top-tags}
+@aboutfun{user-get-top-tracks}
+@aboutfun{user-get-recent-tracks}
+@aboutfun{user-get-shouts}
 @aboutfun{user-get-weekly-album-chart}
 @aboutfun{user-get-weekly-artist-chart}
 @aboutfun{user-get-weekly-chart-list}
