@@ -8,6 +8,15 @@ SBCL=`which sbcl-git`
 
 all: lastfm
 
+
+help:
+	@echo "CL-LASTM : Makefile help"
+	@echo "  dist : creates a distribution archive"
+	@echo "  doc : Creates API documentation"
+	@echo "  cover : Calculate code coverage"
+	@echo "  web : Generate website in the 'www' directory" 
+	@echo "  clean : cleanup the directory"
+
 dist:
 	@echo "Create distribution"
 
@@ -19,7 +28,7 @@ cover:
 	@echo "Code coverage"
 	$(SBCL) --dynamic-space-size 5000 --script misc/lastfm-cover.lisp
 
-www: www/index.xsl www/index.css
+web: www/index.xsl www/index.css
 	@echo "Make website"
 	cd www; $(MAKE)
 
