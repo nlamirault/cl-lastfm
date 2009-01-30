@@ -53,7 +53,7 @@ There is also a <a href="api/documentation.pdf"> PDF </a> version of the API.
   Mail Nicolas Lamirault for questions, bug reports, ...
 
   <h3>News</h3>
-  <p><b>2009-02-xx</b></p>
+  <p><b>2009-01-30</b>Version 0.1 : implements all Last.FM features which do not requires authentication.</p>
   <p><b>2008-11-28</b></p>
   <ul>
     <li>
