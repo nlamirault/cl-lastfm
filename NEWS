@@ -2,6 +2,16 @@
 -- cl-lastfm --
 ---------------
 
+
+
+** Version 0.1 **
+
+* LIFT *
+  Use Lift framework for unit testing.
+
+* LastFM API features *
+  Implemetes all services which do not require authentication.
+
 
 
 

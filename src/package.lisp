@@ -69,7 +69,26 @@
            #:group-get-weekly-chart-list
            #:group-get-weekly-track-chart
 
+           
+           ;; Events
+           #:event-get-info
+           #:event-get-shouts
 
+
+           ;; Library
+           #:library-get-albums
+           #:library-get-artists
+           #:library-get-tracks
+
+           ;; Tag
+           #:tag-get-similar
+           #:tag-get-top-albums
+           #:tag-get-top-artists
+           #:tag-get-top-tracks
+           #:tag-get-top-tags
+           #:tag-get-weekly-artist-chart
+           #:tag-get-weekly-chart-list
+           #:tag-search
 
            ;; Tasteometer
            #:tasteometer-compare
@@ -140,6 +159,28 @@ It has been tested under @a[http://www.sbcl.org]{SBCL}
 @aboutfun{group-get-weekly-track-chart}
 @end{section}
 
+@begin[Library]{section}
+@aboutfun{library-get-albums}
+@aboutfun{library-get-artists}
+@aboutfun{library-get-tracks}
+@end{section}
+
+@begin[Tag]{section}
+@aboutfun{tag-get-similar}
+@aboutfun{tag-get-similar}
+@aboutfun{tag-get-top-albums}
+@aboutfun{tag-get-top-artists}
+@aboutfun{tag-get-top-tracks}
+@aboutfun{tag-get-top-tags}
+@aboutfun{tag-get-weekly-artist-chart}
+@aboutfun{tag-get-weekly-chart-list}
+@aboutfun{tag-search}
+@end{section}
+
+@begin[Events]{section}
+@aboutfun{event-get-info}
+@aboutfun{event-get-shouts}
+@end{section}
 
 @begin[TasteOMeter]{section}
 @aboutfun{tasteometer-compare}

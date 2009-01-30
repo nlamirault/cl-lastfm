@@ -270,6 +270,55 @@
 
 
 
+;; Events
+
+
+(def-lastfm-uri +event-get-info+
+    "?method=event.getinfo&api_key=~A&event=~A")
+
+(def-lastfm-uri +event-get-shouts+
+    "?method=event.getshouts&api_key=~A&event=~A")
+
+
+;; Library
+
+(def-lastfm-uri +library-get-albums+
+    "?method=library.getalbums&api_key=~A&user=~A")
+
+(def-lastfm-uri +library-get-artists+
+    "?method=library.getartists&api_key=~A&user=~A")
+
+(def-lastfm-uri +library-get-tracks+
+    "?method=library.gettracks&api_key=~A&user=~A")
+
+
+;; Tag
+
+
+(def-lastfm-uri +tag-get-similar+
+    "?method=tag.getsimilar&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-get-top-albums+
+    "?method=tag.gettopalbums&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-get-top-artists+
+    "?method=tag.gettopartists&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-get-top-tracks+
+    "?method=tag.gettoptracks&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-get-top-tags+
+    "?method=tag.gettoptags&api_key=~A")
+
+(def-lastfm-uri +tag-get-weekly-artist-chart+
+    "?method=tag.getweeklyartistchart&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-get-weekly-chart-list+
+    "?method=tag.getweeklychartlist&api_key=~A&tag=~A")
+
+(def-lastfm-uri +tag-search+
+    "?method=tag.search&api_key=~A&tag=~A")
+
 
 
 ;; ---------------------

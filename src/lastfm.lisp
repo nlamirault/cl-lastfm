@@ -740,8 +740,10 @@ range is supplied, it will return the most recent album chart for this group}
     (perform-lastfm-query uri)))
 
 
-
-;;; Tasteometer 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tasteometer 
+;;
 
 
 (defun tasteometer-compare (api-key first-type second-type first-value second-value
@@ -765,3 +767,202 @@ or a MySpace profile URL}
             first-type second-type first-value second-value limit)))
             
             
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Events
+;;
+
+
+(defun event-get-info (api-key eventid)
+  "@short{Get the metadata for an event on Last.fm. Includes attendance 
+and lineup information}
+@arg[api_key]{A Last.fm API key}
+@arg[eventid]{The numeric Last.fm event id}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +event-get-info+ api-key eventid)))
+
+
+
+(defun event-get-shouts (api-key eventid)
+  "@short{Get shouts for this event}
+@arg[api_key]{A Last.fm API key}
+@arg[eventid]{The numeric Last.fm event id}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +event-get-shouts+ api-key eventid)))
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Library
+;;
+
+
+(defun library-get-albums (api-key user &key page (limit 49))
+"@short{A paginated list of all the albums in a user's library, with play 
+counts and tag counts}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user whose library you want to fetch}
+@arg[limit]{Limit the amount of albums returned}
+@arg[page]{The page number you wish to scan to}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +library-get-albums+ api-key user)
+    (when page
+      (format stream "&page=~A" page))
+    (when limit
+      (format stream "&limit=~A" limit))))
+
+
+
+(defun library-get-artists (api-key user &key page (limit 49))
+"@short{A paginated list of all the artists in a user's library, with play 
+counts and tag counts}
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user whose library you want to fetch}
+@arg[limit]{Limit the amount of artists returned}
+@arg[page]{The page number you wish to scan to}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +library-get-artists+ api-key user)
+    (when page
+      (format stream "&page=~A" page))
+    (when limit
+      (format stream "&limit=~A" limit))))
+
+
+(defun library-get-tracks (api-key user &key page (limit 49))
+"@short{A paginated list of all the tracks in a user's library, with play 
+counts and tag counts. }
+@arg[api_key]{A Last.fm API key}
+@arg[user]{The user whose library you want to fetch}
+@arg[limit]{Limit the amount of tracks returned}
+@arg[page]{The page number you wish to scan to}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +library-get-tracks+ api-key user)
+    (when page
+      (format stream "&page=~A" page))
+    (when limit
+      (format stream "&limit=~A" limit))))
+      
+  
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tag
+;;
+
+
+
+(defun tag-get-similar (api-key tag)
+  "@short{Search for tags similar to this one. Returns tags ranked by 
+similarity, based on listening data}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +tag-get-similar+ api-key tag)))
+
+
+(defun tag-get-top-albums (api-key tag)
+  "@short{Get the top albums tagged by this tag, ordered by tag count}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+(with-lastfm-stream stream
+    (format stream +tag-get-top-albums+ api-key tag)))
+
+
+(defun tag-get-top-artists (api-key tag)
+  "@short{Get the top artists tagged by this tag, ordered by tag count}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+(with-lastfm-stream stream
+    (format stream +tag-get-top-artists+ api-key tag)))
+
+
+(defun tag-get-top-tracks (api-key tag)
+  "@short{Get the top tracks tagged by this tag, ordered by tag count}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+(with-lastfm-stream stream
+    (format stream +tag-get-top-tracks+ api-key tag)))
+
+
+(defun tag-get-top-tags (api-key)
+  "@short{Fetches the top global tags on Last.fm, sorted by popularity 
+(number of times used).}
+@arg[api_key]{A Last.fm API key}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+(with-lastfm-stream stream
+    (format stream +tag-get-top-tags+ api-key)))
+
+
+(defun tag-get-weekly-artist-chart (api-key tag &key from to limit)
+"@short{Get an artist chart for a tag, for a given date range. 
+If no date range is supplied, it will return the most recent artist chart 
+for this tag}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@arg[from]{The date at which the chart should start from}
+@arg[to]{The date at which the chart should end on}
+@arg[limit]{The number of chart items to return}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +tag-get-weekly-artist-chart+ api-key tag)
+    (when from
+      (format stream "&from=~A"
+              (url-encode-utf8 (format nil "~A" from))))
+    (when to
+      (format stream "&to=~A"
+              (url-encode-utf8 (format nil "~A" to))))
+    (when limit
+      (format stream "&limit=~A" limit))))
+
+
+(defun tag-get-weekly-chart-list (api-key tag)
+  "@short{Get a list of available charts for this tag, expressed as date 
+ranges which can be sent to the chart services}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+(with-lastfm-stream stream
+    (format stream +tag-get-weekly-chart-list+ api-key tag)))
+
+
+(defun tag-search (api-key tag &key (page 1) (limit 29))
+  "@short{Search for a tag by name. Returns matches sorted by relevance}
+@arg[api_key]{A Last.fm API key}
+@arg[tag]{The tag name in question}
+@arg[limit]{Limit the number of tags returned at one time}
+@arg[page]{Scan into the results by specifying a page number}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +tag-search+ api-key tag)
+    (when page
+      (format stream "&page=~A" page))
+    (when limit
+      (format stream "&limit=~A" limit))))
+
+    
+    

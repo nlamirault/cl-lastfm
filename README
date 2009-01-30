@@ -41,7 +41,8 @@ cl-lastfm implements theses features :
 [ ] auth.getWebSession
 * Event
 [ ] event.attend
-[ ] event.getInfo
+[x] event.getInfo
+[ ] event.getShouts
 [ ] event.share
 * Geo
 [x] geo.getEvents
@@ -57,22 +58,22 @@ cl-lastfm implements theses features :
 [ ] library.addAlbum
 [ ] library.addArtist
 [ ] library.addTrack
-[ ] library.getAlbums
-[ ] library.getArtists
-[ ] library.getTracks
+[x] library.getAlbums
+[x] library.getArtists
+[x] library.getTracks
 * Playlist
 [ ] playlist.addTrack
 [ ] playlist.create
 [ ] playlist.fetch
 * Tag
-[ ] tag.getSimilar
-[ ] tag.getTopAlbums
-[ ] tag.getTopArtists
-[ ] tag.getTopTags
-[ ] tag.getTopTracks
-[ ] tag.getWeeklyArtistChart
-[ ] tag.getWeeklyChartList
-[ ] tag.search
+[x] tag.getSimilar
+[x] tag.getTopAlbums
+[x] tag.getTopArtists
+[x] tag.getTopTags
+[x] tag.getTopTracks
+[x] tag.getWeeklyArtistChart
+[x] tag.getWeeklyChartList
+[x] tag.search
 * Tasteometer
 [x] tasteometer.compare
 * Track
