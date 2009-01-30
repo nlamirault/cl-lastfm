@@ -79,14 +79,14 @@ cl-lastfm implements theses features :
 * Track
 [ ] track.addTags
 [ ] track.ban
-[ ] track.getInfo
-[ ] track.getSimilar
-[ ] track.getTags
-[ ] track.getTopFans
-[ ] track.getTopTags
+[x] track.getInfo
+[x] track.getSimilar
+[x] track.getTags
+[x] track.getTopFans
+[x] track.getTopTags
 [ ] track.love
 [ ] track.removeTag
-[ ] track.search
+[x] track.search
 [ ] track.share
 * User
 [x] user.getEvents
