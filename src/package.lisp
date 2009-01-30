@@ -70,6 +70,11 @@
            #:group-get-weekly-track-chart
 
 
+
+           ;; Tasteometer
+           #:tasteometer-compare
+
+
            ;; conditions
 
            #:lastfm-error
@@ -133,6 +138,11 @@ It has been tested under @a[http://www.sbcl.org]{SBCL}
 @aboutfun{group-get-weekly-artist-chart}
 @aboutfun{group-get-weekly-chart-list}
 @aboutfun{group-get-weekly-track-chart}
+@end{section}
+
+
+@begin[TasteOMeter]{section}
+@aboutfun{tasteometer-compare}
 @end{section}
 
 "))

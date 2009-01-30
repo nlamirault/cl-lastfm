@@ -262,8 +262,11 @@
 
 
 
+;; Tasteometer
 
 
+(def-lastfm-uri +tasteometer-compare+
+    "?method=tasteometer.compare&api_key=~A&type1=~A&type2=~A&value1=~A&value2=~A&limit=~A")
 
 
 

@@ -37,5 +37,6 @@
                (:file "artists" :depends-on ("lastfm-tests"))
                (:file "geo" :depends-on ("lastfm-tests"))
                (:file "users" :depends-on ("lastfm-tests"))
+               (:file "tasteometer" :depends-on ("lastfm-tests"))
                (:file "unit-tests" :depends-on ("lastfm-tests"))))))
 

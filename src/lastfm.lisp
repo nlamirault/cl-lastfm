@@ -21,14 +21,14 @@
 ;; Macro for LastFM requests.
 
 
-;; (defmacro with-lastfm-uri ((uri) stream &body body)
-;;   "Macro which creates an HTTP url, add parameters executing body,
-;; and performs the HTTP request defined by uri."
-;;   `(let (,uri)
-;;      (with-output-to-string (,stream)
-;;        ,@body
-;;        (setf ,uri (get-output-stream-string ,stream)))
-;;     (perform-lastfm-query ,uri)))
+(defmacro with-lastfm-stream (stream &body body)
+  "Macro which creates an HTTP url, add parameters executing body,
+and performs the HTTP request defined by uri."
+  `(let (uri)
+     (with-output-to-string (,stream)
+       ,@body
+       (setf uri (get-output-stream-string ,stream)))
+    (perform-lastfm-query uri)))
 
 
 
@@ -741,6 +741,27 @@ range is supplied, it will return the most recent album chart for this group}
 
 
 
+;;; Tasteometer 
 
 
-
+(defun tasteometer-compare (api-key first-type second-type first-value second-value
+                            &key (limit 5))
+  "@short{Get a Tasteometer score from two inputs, along with a list of 
+shared artists. If the input is a User or a Myspace URL, some additional 
+information is returned.}
+@arg[api_key]{A Last.fm API key}
+@arg[fisrt-type]{Must be user, artists or myspace}
+@arg[second-type]{Must be user, artists or myspace}
+@arg[first-value]{Must be : Last.fm username or comma-separated artist names 
+or a MySpace profile URL}
+@arg[second-value]{Must be : Last.fm username or comma-separated artist names 
+or a MySpace profile URL}
+@arg[limit]{How many shared artists to display}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +tasteometer-compare+
+            api-key
+            first-type second-type first-value second-value limit)))
+            
+            

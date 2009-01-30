@@ -74,7 +74,7 @@ cl-lastfm implements theses features :
 [ ] tag.getWeeklyChartList
 [ ] tag.search
 * Tasteometer
-[ ] tasteometer.compare
+[x] tasteometer.compare
 * Track
 [ ] track.addTags
 [ ] track.ban
