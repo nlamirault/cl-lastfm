@@ -90,6 +90,13 @@
            #:tag-get-weekly-chart-list
            #:tag-search
 
+           ;; Track
+           #:track-get-info
+           #:track-get-similar
+           #:track-get-top-fans
+           #:track-get-top-tags
+           #:track-search
+
            ;; Tasteometer
            #:tasteometer-compare
 
@@ -175,6 +182,14 @@ It has been tested under @a[http://www.sbcl.org]{SBCL}
 @aboutfun{tag-get-weekly-artist-chart}
 @aboutfun{tag-get-weekly-chart-list}
 @aboutfun{tag-search}
+@end{section}
+
+@begin[Track]{section}
+@aboutfun{track-get-info}
+@aboutfun{track-get-similar}
+@aboutfun{track-get-top-fans}
+@aboutfun{track-get-top-tags}
+@aboutfun{track-search}
 @end{section}
 
 @begin[Events]{section}

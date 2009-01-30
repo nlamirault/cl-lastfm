@@ -320,6 +320,28 @@
     "?method=tag.search&api_key=~A&tag=~A")
 
 
+;; Tracks
+
+(def-lastfm-uri +track-get-info+
+    "?method=track.getinfo&api_key=~A")
+
+(def-lastfm-uri +track-get-similar+
+     "?method=track.getsimilar&api_key=~A")
+
+(def-lastfm-uri +track-get-top-fans+
+     "?method=track.gettopfans&api_key=~A")
+
+(def-lastfm-uri +track-get-top-tags+
+     "?method=track.gettoptags&api_key=~A")
+
+(def-lastfm-uri +track-search+
+     "?method=track.search&api_key=~A&track=~A")
+
+
+
+
+
+
 
 ;; ---------------------
 ;; HTTP IO Protocol 1.1

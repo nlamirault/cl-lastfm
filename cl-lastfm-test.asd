@@ -40,6 +40,7 @@
                (:file "events" :depends-on ("lastfm-tests"))
                (:file "library" :depends-on ("lastfm-tests"))
                (:file "tag" :depends-on ("lastfm-tests"))
+               (:file "track" :depends-on ("lastfm-tests"))
                (:file "tasteometer" :depends-on ("lastfm-tests"))
                (:file "unit-tests" :depends-on ("lastfm-tests"))))))
 

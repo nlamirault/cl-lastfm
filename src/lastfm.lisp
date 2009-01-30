@@ -63,19 +63,6 @@ ISO 639 alpha-2 code}
         (format stream "&lang=~A" (url-encode-utf8 lang)))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
-
-;;;   (with-lastfm-uri (uri) stream
-;;;     (format stream +album-get-info+ api-key)
-;;;       (when artist-name
-;;;         (format stream "&artist=~A" (url-encode-utf8 artist-name)))
-;;;       (when album-name
-;;;         (format stream "&album=~A" (url-encode-utf8 album-name)))
-;;;       (when mbid
-;;;         (format stream "&mbid=~A" (url-encode-utf8 mbid)))
-;;;       (when lang
-;;;         (format stream "&lang=~A" (url-encode-utf8 lang))))
-
-
     
 
 (defun album-search (api-key album-name &key (limit 30) (page 1))
@@ -966,3 +953,123 @@ ranges which can be sent to the chart services}
 
     
     
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tracks
+;;
+
+
+
+(defun track-get-info (api-key &key artist track mbid)
+  "@short{Get the metadata for a track on Last.fm using the artist/track name 
+or a musicbrainz id}
+@arg[api-key]{A Last.fm API key}
+@arg[artist]{The artist name in question}
+@arg[track]{The track name in question}
+@arg[mbid]{The musicbrainz id for the track}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +track-get-info+ api-key)
+    (if mbid
+        (format stream "&mbid=~A" mbid)
+        (progn
+          (when artist
+            (format stream "&artist=~A"
+                    (url-encode-utf8 (format nil "~A" artist))))
+          (when track
+            (format stream "&track=~A"
+                    (url-encode-utf8 (format nil "~A" track))))))))
+
+
+(defun track-get-similar (api-key &key artist track mbid)
+  "@short{Get the similar tracks for this track on Last.fm, based on 
+listening data}
+@arg[api-key]{A Last.fm API key}
+@arg[artist]{The artist name in question}
+@arg[track]{The track name in question}
+@arg[mbid]{The musicbrainz id for the track}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +track-get-similar+ api-key)
+    (if mbid
+        (format stream "&mbid=~A"
+                (url-encode-utf8 (format nil "~A" mbid)))
+        (progn
+          (when artist
+            (format stream "&artist=~A"
+                    (url-encode-utf8 (format nil "~A" artist))))
+          (when track
+            (format stream "&track=~A"
+                    (url-encode-utf8 (format nil "~A" track))))))))
+
+
+(defun track-get-top-fans (api-key &key artist track mbid)
+  "@short{Get the top fans for this track on Last.fm, based on listening data. 
+Supply either track & artist name or musicbrainz id}
+@arg[api-key]{A Last.fm API key}
+@arg[artist]{The artist name in question}
+@arg[track]{The track name in question}
+@arg[mbid]{The musicbrainz id for the track}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +track-get-top-fans+ api-key)
+    (if mbid
+        (format stream "&mbid=~A" mbid)
+        (progn
+          (when artist
+            (format stream "&artist=~A"
+                    (url-encode-utf8 (format nil "~A" artist))))
+          (when track
+            (format stream "&track=~A"
+                    (url-encode-utf8 (format nil "~A" track))))))))
+
+
+(defun track-get-top-tags (api-key &key artist track mbid)
+  "@short{Get the top tags for this track on Last.fm, ordered by tag count. 
+Supply either track & artist name or mbid}
+@arg[api-key]{A Last.fm API key}
+@arg[artist]{The artist name in question}
+@arg[track]{The track name in question}
+@arg[mbid]{The musicbrainz id for the track}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +track-get-top-tags+ api-key)
+    (if mbid
+        (format stream "&mbid=~A" mbid)
+        (progn
+          (when artist
+            (format stream "&artist=~A"
+                    (url-encode-utf8 (format nil "~A" artist))))
+          (when track
+            (format stream "&track=~A"
+                    (url-encode-utf8 (format nil "~A" track))))))))
+
+
+(defun track-search (api-key track &key artist (page 1) (limit 29))
+  "@short{Search for a track by track name. Returns track matches sorted by 
+relevance}
+@arg[api-key]{A Last.fm API key}
+@arg[track]{The track name in question}
+@arg[limit]{The number of tracks returned at one time}
+@arg[page]{Scan into the results by specifying a page number}
+@see-condition{lastfm-request-error}
+@return{An XML stream}"
+  (with-lastfm-stream stream
+    (format stream +track-search+ api-key track)
+    (when artist
+      (format stream "&artist=~A"
+                    (url-encode-utf8 (format nil "~A" artist))))
+    (when page
+      (format stream "&page=~A" page))
+    (when limit
+      (format stream "&limit=~A" limit))))
+
+
+
+
