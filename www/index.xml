@@ -7,8 +7,9 @@
   </p>
   <p>
     cl-lastfm was written
-    by <a href="mailto:nlamirault@gmail.com">Nicolas Lamirault</a> and is available under
-    a <a href="http://www.opensource.org/licenses/mit-license.php"> MIT </a> style license.
+    by <a href="mailto:nlamirault@gmail.com">Nicolas Lamirault</a> and is available 
+    under a <a href="http://www.opensource.org/licenses/mit-license.php"> MIT </a> 
+    style license.
   </p>
 
   <h3>Installation using asdf-install</h3>
@@ -16,7 +17,9 @@
   <h3>Manual Installation</h3>
 
   <p>
-    Download a cl-lastfm <a href="#"> tarball</a>
+    Download a cl-lastfm <a href="#"> tarball</a> or
+    checkout source code from GitHub :
+    <pre> $> git clone git://github.com/nlamirault/cl-lastfm.git</pre>
   </p>
   <p>
     cl-lastfm needs
@@ -48,11 +51,11 @@ There is also a <a href="api/documentation.pdf"> PDF </a> version of the API.
   Mail Nicolas Lamirault for questions, bug reports, ...
 
   <h3>News</h3>
-  <p><b>2009-xx-xx</b></p>
+  <p><b>2009-02-xx</b></p>
   <p><b>2008-11-28</b></p>
   <ul>
     <li>
-      Project creation. <a href="http://code.google.com/p/cl-audioscrobbler">cl-audioscrobbler</a> becomes deprecated.
+      Project creation. <a href="http://code.google.com/p/cl-audioscrobbler">cl-audioscrobbler</a> will be deprecated.
     </li>
   </ul>
 </page>
