@@ -27,7 +27,7 @@ doc:
 
 cover:
 	@echo "Code coverage"
-	$(SBCL) --dynamic-space-size 5000 --script misc/lastfm-cover.lisp
+	$(SBCL) --dynamic-space-size 500 --script misc/lastfm-cover.lisp
 
 web: www/index.xsl www/index.css
 	@echo "Make website"
@@ -44,4 +44,4 @@ cleanup: clean
 	rm -fr www/cover
 
 
-lastfm: doc cover www
+lastfm: doc cover web

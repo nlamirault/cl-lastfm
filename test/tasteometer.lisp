@@ -24,9 +24,8 @@
 (lift:addtest (cl-lastfm-test)
   test-tasteometer-compare-without-api-key
   (handler-case 
-      (cl-lastfm::tasteometer-compare nil
-                                      ""
-                                      "user" "user" "joanofarctan" "mirandason")
+      (cl-lastfm::tasteometer-compare
+       "" "user" "user" "joanofarctan" "mirandason")
     (cl-lastfm:lastfm-request-error (condition)
       (lift:ensure (equal (type-of condition)
                           'cl-lastfm:lastfm-request-error))

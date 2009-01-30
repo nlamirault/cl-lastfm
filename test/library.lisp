@@ -39,7 +39,7 @@
          (cl-lastfm:library-get-albums "b25b959554ed76058ac220b7b2e0a026"
                                        "lam_" :limit 5)))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<albums user= " response))
+    (lift:ensure (cl-ppcre:scan "<albums user=" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<album>" response)
         (incf sum))
@@ -69,7 +69,7 @@
          (cl-lastfm:library-get-artists "b25b959554ed76058ac220b7b2e0a026"
                                         "lam_" :limit 5)))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<artists user= " response))
+    (lift:ensure (cl-ppcre:scan "<artists user=" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<artist>" response)
         (incf sum))
@@ -99,7 +99,7 @@
          (cl-lastfm:library-get-tracks "b25b959554ed76058ac220b7b2e0a026"
                                         "lam_" :limit 5)))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<tracks user= " response))
+    (lift:ensure (cl-ppcre:scan "<tracks user=" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<track>" response)
         (incf sum))

@@ -120,9 +120,6 @@
       (lift:ensure (> sum 0)))))
 
 
-
-
-
 ;; Get top tags
 
 
@@ -159,8 +156,7 @@
 (lift:addtest (cl-lastfm-test)
   test-track-search-without-api-key
   (handler-case 
-      (cl-lastfm:track-search ""
-                              :artist "Cher" :track "Believe")
+      (cl-lastfm:track-search "" "Tostaki" :limit 5)
     (cl-lastfm:lastfm-request-error (condition)
       (lift:ensure (equal (type-of condition)
                           'cl-lastfm:lastfm-request-error))
@@ -175,12 +171,11 @@
          (cl-lastfm:track-search "b25b959554ed76058ac220b7b2e0a026"
                                  "Tostaki")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<results for " response))
+    (lift:ensure (cl-ppcre:scan "<results for" response))
     (lift:ensure (cl-ppcre:scan "<trackmatches>" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<track>" response)
         (incf sum))
       (lift:ensure (> sum 0)))))
-
 
 

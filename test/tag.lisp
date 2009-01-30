@@ -39,12 +39,11 @@
          (cl-lastfm:tag-get-similar "b25b959554ed76058ac220b7b2e0a026"
                                     "rock")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<similartags tag=\"rock\" " response))
+    (lift:ensure (cl-ppcre:scan "<similartags tag=\"rock\"" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<tag>" response)
         (incf sum))
       (lift:ensure (> sum 0)))))
-
 
 
 ;; Get top albums
@@ -67,11 +66,11 @@
   test-tag-get-top-albums
   (let ((response
          (cl-lastfm:tag-get-top-albums "b25b959554ed76058ac220b7b2e0a026"
-                                       "rock")
+                                       "rock")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<topalbums tag=\"rock\" " response))
+    (lift:ensure (cl-ppcre:scan "<topalbums tag=\"rock\"" response))
     (let ((sum 0))
-      (cl-ppcre:do-matches (s e "<album rank=" response)
+      (cl-ppcre:do-matches (s e "<album " response)
         (incf sum))
       (lift:ensure (> sum 0)))))
 
@@ -98,7 +97,7 @@
   test-tag-get-top-artists
   (let ((response
          (cl-lastfm:tag-get-top-artists "b25b959554ed76058ac220b7b2e0a026"
-                                        "rock")
+                                        "rock")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
     (lift:ensure (cl-ppcre:scan "<topartists tag=\"rock\" " response))
     (let ((sum 0))
@@ -129,9 +128,9 @@
   test-tag-get-top-tracks
   (let ((response
          (cl-lastfm:tag-get-top-tracks "b25b959554ed76058ac220b7b2e0a026"
-                                       "rock")
+                                       "rock")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<toptracks tag=\"rock\" " response))
+    (lift:ensure (cl-ppcre:scan "<toptracks tag=\"rock\"" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<track rank=" response)
         (incf sum))
@@ -147,7 +146,7 @@
 (lift:addtest (cl-lastfm-test)
   test-tag-get-top-tags-without-api-key
   (handler-case 
-      (cl-lastfm:tag-get-top-tags "" "rock")
+      (cl-lastfm:tag-get-top-tags "")
     (cl-lastfm:lastfm-request-error (condition)
       (lift:ensure (equal (type-of condition)
                           'cl-lastfm:lastfm-request-error))

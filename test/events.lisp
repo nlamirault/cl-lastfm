@@ -23,7 +23,7 @@
 (lift:addtest (cl-lastfm-test)
   test-event-get-info-without-api-key
   (handler-case 
-      (cl-lastfm:event-get-info nil "" "328799")                                
+      (cl-lastfm:event-get-info "" "328799")
     (cl-lastfm:lastfm-request-error (condition)
       (lift:ensure (equal (type-of condition)
                           'cl-lastfm:lastfm-request-error))
@@ -53,7 +53,7 @@
 (lift:addtest (cl-lastfm-test)
   test-event-get-shouts-without-api-key
   (handler-case 
-      (cl-lastfm:event-get-shouts nil "" "328799")                                
+      (cl-lastfm:event-get-shouts "" "328799")                                
     (cl-lastfm:lastfm-request-error (condition)
       (lift:ensure (equal (type-of condition)
                           'cl-lastfm:lastfm-request-error))
@@ -67,7 +67,7 @@
   test-event-get-info
   (let ((response
          (cl-lastfm:event-get-shouts "b25b959554ed76058ac220b7b2e0a026"
-                                   "328799")))
+                                     "328799")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
     (lift:ensure (cl-ppcre:scan "<shouts event" response))))
 

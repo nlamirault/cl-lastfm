@@ -210,7 +210,7 @@
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
     (lift:ensure (cl-ppcre:scan "<topartists user=" response))
     (let ((sum 0))
-      (cl-ppcre:do-matches (s e "<artist  rank=" response)
+      (cl-ppcre:do-matches (s e "<artist rank=" response)
         (incf sum))
       (lift:ensure (> sum 0)))))
 
@@ -375,7 +375,7 @@
 (lift:addtest (cl-lastfm-test)
   test-user-get-weekly-artist
   (let ((response
-         (cl-lastfm:user-get-weekly-album-chart
+         (cl-lastfm:user-get-weekly-artist-chart
           "b25b959554ed76058ac220b7b2e0a026" "rj")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
     (lift:ensure (cl-ppcre:scan "<weeklyartistchart user=" response))
@@ -383,7 +383,7 @@
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<artist" response)
         (incf sum))
-      (lift:ensure (> sum 0)))))
+      (lift:ensure (>= sum 0)))))
 
 
 
@@ -408,8 +408,8 @@
          (cl-lastfm:user-get-weekly-chart-list
           "b25b959554ed76058ac220b7b2e0a026" "rj")))
     (lift:ensure (cl-ppcre:scan "<lfm status=\"ok\">" response))
-    (lift:ensure (cl-ppcre:scan "<weeklyartistchart user=" response))
-    (lift:ensure (cl-ppcre:scan "</weeklyartistchart>" response))
+    (lift:ensure (cl-ppcre:scan "<weeklychartlist user=" response))
+     (lift:ensure (cl-ppcre:scan "</weeklychartlist>" response))
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<chart" response)
         (incf sum))
@@ -442,7 +442,7 @@
     (let ((sum 0))
       (cl-ppcre:do-matches (s e "<track" response)
         (incf sum))
-      (lift:ensure (> sum 0)))))
+      (lift:ensure (>= sum 0)))))
 
 
 
