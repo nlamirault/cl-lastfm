@@ -48,16 +48,26 @@ There is also a <a href="api/documentation.pdf"> PDF </a> version of the API.
   for the unit tests. See report <a href="test-results/">here</a>.
   And the <a href="coverage/cover-index.html"> code coverage </a> result 
   performed by sb-cover</p>
+  <pre>(cl-lastfm-test:run-cl-lastfm-test)</pre>
 
   <h3>Support</h3>
   Mail Nicolas Lamirault for questions, bug reports, ...
 
   <h3>News</h3>
-  <p><b>2009-01-30</b>Version 0.1 : implements all Last.FM features which do not requires authentication.</p>
+  <p><b>2009-01-30</b></p>
+   <ul><li>Version 0.1 : implements all Last.FM features which do not requires authentication.</li></ul>
   <p><b>2008-11-28</b></p>
   <ul>
     <li>
       Project creation. <a href="http://code.google.com/p/cl-audioscrobbler">cl-audioscrobbler</a> will be deprecated.
     </li>
   </ul>
+
+  <h3>Releases</h3>
+   <p>
+     <b>0.1</b>
+     <a href="http://cl-lastfm.googlecode.com/files/cl-lastfm-0.1.tar.gz">tgz</a>
+     <a href="http://cl-lastfm.googlecode.com/files/cl-lastfm-0.1.tar.gz.asc">asc</a>
+   </p>
+
 </page>
