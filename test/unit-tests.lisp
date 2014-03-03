@@ -22,8 +22,6 @@
 
 (defun run-cl-lastfm-test ()
   "Run the CL-LASTFM unit tests."
-;;;   (setq cl-ppcre:*regex-char-code-limit* 256
-;;;         cl-ppcre:*use-bmh-matchers* nil)
   (let ((cl-ppcre:*regex-char-code-limit* 256)
         (cl-ppcre:*use-bmh-matchers* nil)
         (config-file (concatenate 'string

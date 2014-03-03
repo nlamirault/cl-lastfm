@@ -1,13 +1,0 @@
----------------
--- cl-lastfm --
----------------
-
-* Unit Tests / Memory  *
-Launch unit tests failed due to a memory problem.
-
-
-
-Local variables:
-mode: outline
-paragraph-separate: "[  ^L]*$"
-end:

@@ -17,7 +17,8 @@
 
 (defpackage :cl-lastfm-test
   (:use :common-lisp)
-  (:export #:run-cl-lastfm-test))
+  (:export #:*cl-lastfm-path*
+           #:run-cl-lastfm-test))
 
 
 
