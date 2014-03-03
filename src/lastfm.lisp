@@ -360,12 +360,13 @@ This service does not require authentication}
     (perform-lastfm-query uri)))
 
 
-(defun user-get-friends (api-key user &key limit recenttracks)
+(defun user-get-friends (api-key user &key limit page recenttracks)
   "@short{Get a list of the user's friends on Last.fm
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the friends of}
 @arg[limit]{An integer used to limit the number of friends returned}
+@arg[page]{An integer representing the page number to fetch. Defaults to first page}
 @arg[recenttracks]{Whether or not to include information about friends' recent 
 listening in the response}
 @see-condition{lastfm-request-error}
@@ -377,6 +378,9 @@ listening in the response}
       (when limit
         (format stream "&limit=~A"
                 (url-encode-utf8 (format nil "~A" limit))))
+      (when page
+        (format stream "&page=~A"
+                (url-encode-utf8 (format nil "~A" page))))
       (when recenttracks
         (format stream "&recenttracks=~A"
                 (url-encode-utf8 (format nil "~A" recenttracks))))
@@ -385,17 +389,25 @@ listening in the response}
 
 
 
-(defun user-get-loved-tracks (api-key user)
+(defun user-get-loved-tracks (api-key user &key limit page)
   "@short{Get the last 50 tracks loved by a user. 
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch the loved tracks for}
+@arg[limit]{An integer representing the number of results to fetch per page. Defaults to 50}
+@arg[page]{An integer representing the page number to fetch. Defaults to first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
     (with-output-to-string (stream)
       (format stream +user-get-loved-tracks+ api-key)
       (format stream "&user=~A" (url-encode-utf8 user))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (when page
+        (format stream "&page=~A"
+                (url-encode-utf8 (format nil "~A" page))))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
 
@@ -420,13 +432,15 @@ This service does not require authentication}
 
 
 
-(defun user-get-top-albums (api-key user &key period)
+(defun user-get-top-albums (api-key user &key period limit page)
     "@short{Get the top albums listened to by a user. You can stipulate a time 
 period. Sends the overall chart by default}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top albums for}
 @arg[period]{overall | 3month | 6month | 12month - The time period over which 
 to retrieve top albums for.}
+@arg[limit]{The number of results to fetch per page. Defaults to 50}
+@arg[page]{The page number to fetch. Defaults to first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -436,18 +450,26 @@ to retrieve top albums for.}
       (when period
         (format stream "&period=~A"
                 (url-encode-utf8 (format nil "~A" period))))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (when page
+        (format stream "&page=~A"
+                (url-encode-utf8 (format nil "~A" page))))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
 
 
 
-(defun user-get-top-artists (api-key user &key period)
+(defun user-get-top-artists (api-key user &key period limit page)
     "@short{Get the top artists listened to by a user. You can stipulate a time 
 period. Sends the overall chart by default.}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top artists for}
 @arg[period]{overall | 3month | 6month | 12month - The time period over which 
 to retrieve top albums for.}
+@arg[limit]{The number of results to fetch per page. Defaults to 50}
+@arg[page]{The page number to fetch. Defaults to first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -457,6 +479,12 @@ to retrieve top albums for.}
       (when period
         (format stream "&period=~A"
                 (url-encode-utf8 (format nil "~A" period))))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (when page
+        (format stream "&page=~A"
+                (url-encode-utf8 (format nil "~A" page))))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
 
@@ -479,13 +507,15 @@ to retrieve top albums for.}
     (perform-lastfm-query uri)))
 
 
-(defun user-get-top-tracks (api-key user &key period)
+(defun user-get-top-tracks (api-key user &key period limit page)
     "@short{Get the top tracks listened to by a user. You can stipulate a time 
 period. Sends the overall chart by default. }
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top tracks for}
 @arg[period]{overall | 3month | 6month | 12month - The time period over which 
 to retrieve top tracks for.}
+@arg[limit]{The number of results to fetch per page. Defaults to 50}
+@arg[page]{The page number to fetch. Defaults to first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
   (let (uri)
@@ -495,6 +525,12 @@ to retrieve top tracks for.}
       (when period
         (format stream "&period=~A"
                 (url-encode-utf8 (format nil "~A" period))))
+      (when limit
+        (format stream "&limit=~A"
+                (url-encode-utf8 (format nil "~A" limit))))
+      (when page
+        (format stream "&page=~A"
+                (url-encode-utf8 (format nil "~A" page))))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
 
