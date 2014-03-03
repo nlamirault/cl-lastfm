@@ -1,6 +1,9 @@
 cl-lastfm
 =========
 
+[![Build Status](https://travis-ci.org/nlamirault/cl-lastfm.png)](https://travis-ci.org/nlamirault/cl-lastfm)
+
+
 A Common Lisp wrapper around [Last.fm](http://www.last.fm) 2.0 web service.
 
 API
