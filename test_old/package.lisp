@@ -7,7 +7,7 @@
 ;;;; Purpose:       Package definition for cl-lastfm Unit Tests.
 ;;;; Programmer:    Nicolas Lamirault <nlamirault@gmail.com>
 ;;;;
-;;;; This file, part of cl-lastfm, is Copyright (c) by Nicolas Lamirault
+;;;; This file, part of cl-lastfm, is Copyright (c) 2008 by Nicolas Lamirault
 ;;;;
 ;;;; cl-lastfm users are granted the rights to distribute and use this software
 ;;;; as governed by the terms of the MIT License :
@@ -15,7 +15,10 @@
 ;;;;
 ;;;; *************************************************************************
 
-(defpackage #:cl-lastfm-test
-  (:use #:cl
-        #:cl-lastfm
-        #:lisp-unit))
+(defpackage :cl-lastfm-test
+  (:use :common-lisp)
+  (:export #:*cl-lastfm-path*
+           #:run-cl-lastfm-test))
+
+
+

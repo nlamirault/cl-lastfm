@@ -3,7 +3,7 @@
 #
 
 
-SBCL=`which sbcl-git`
+SBCL=`which sbcl`
 
 
 all: lastfm
