@@ -15,28 +15,29 @@
 ;;;;
 ;;;; *************************************************************************
 
+;;(in-package :cl-user)
 
-(require :asdf)
+;; (load ".clenv/.quicklisp/setup.lisp")
 
-(asdf:oos 'asdf:load-op :atdoc)
-(asdf:oos 'asdf:load-op :cl-lastfm)
+;; (ql:quickload "cl-lastfm")
+;; (ql:quickload "atdoc")
 
-
-(let* ((path (namestring
-              (asdf:component-relative-pathname (asdf:find-system :cl-lastfm))))
-       (dir (concatenate 'string path "/www/api/")))
-       (ensure-directories-exist dir)
-  (atdoc:generate-html-documentation '(:cl-lastfm)
-                                     dir
-                                     :index-title "cl-lastfm API reference"
-                                     :heading "LastFM for Common Lisp"
-                                     ;;:css "orange-sans.css"
-                                     :single-page-p t
-                                     :include-internal-symbols-p nil)
-  (atdoc:generate-latex-documentation '(:cl-lastfm)
-                                      dir
-                                      :title "cl-lastfm API reference")
-  (atdoc:generate-info-documentation '(:cl-lastfm)
-                                     dir
-                                     :name "cl-lastfm"
-                                     :title "cl-lastfm API referenc"))
+(defun make-lastfm-doc ()
+  (let* ((path (namestring
+		(asdf:component-relative-pathname (asdf:find-system :cl-lastfm))))
+	 (dir (concatenate 'string path "/www/api/")))
+    (ensure-directories-exist dir)
+    (atdoc:generate-html-documentation '(:cl-lastfm)
+				       dir
+				       :index-title "cl-lastfm API reference"
+				       :heading "LastFM for Common Lisp"
+				       ;;:css "orange-sans.css"
+				       :single-page-p t
+				       :include-internal-symbols-p nil)
+    (atdoc:generate-latex-documentation '(:cl-lastfm)
+					dir
+					:title "cl-lastfm API reference")
+    (atdoc:generate-info-documentation '(:cl-lastfm)
+				       dir
+				       :name "cl-lastfm"
+				       :title "cl-lastfm API referenc")))
