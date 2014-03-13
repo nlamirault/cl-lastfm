@@ -7,6 +7,7 @@
 
 (defparameter *api-key* (sb-posix:getenv "CL-LASTFM-API-KEY"))
 
+(format t "API Key: ~A" (sb-posix:getenv "CL-LASTFM-API-KEY"))
 
 (define-test cant-get-user-events-without-api-key
   (handler-case
@@ -17,6 +18,7 @@
 
 
 (define-test can-get-user-events-with-name
+  (format t "API Key: ~A" (sb-posix:getenv "CL-LASTFM-API-KEY"))
   (let ((response
          (user-get-events *api-key*
 			  "rj")))
