@@ -2,8 +2,21 @@
 
 [![Build Status](http://img.shields.io/travis/nlamirault/cl-lastfm.svg)](https://travis-ci.org/nlamirault/cl-lastfm)
 
-
 A Common Lisp wrapper around [Last.fm](http://www.last.fm) 2.0 web service.
+
+## Intallation
+
+Add the projet and load it using [Quicklisp](http://www.quicklisp.org):
+
+    CL-USER> (push #p"/projects/cl-lastfm/" asdf:*central-registry*)
+    CL-USER> (ql:quickload "cl-lastfm")
+
+## Usage
+
+Get a LastFM [API Key](http://www.lastfm.fr/api/accounts) and make some requests:
+
+    CL-USER> (setq *api-key* "xxxxx")
+    CL-USER> (cl-lastfm:artist-get-info *api-key* :artist-name "U2")
 
 ## API
 

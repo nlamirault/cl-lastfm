@@ -10,7 +10,7 @@
 
 (define-test cant-get-user-events-without-api-key
   (handler-case
-      (cl-lastfm:user-get-events nil "rj")
+      (user-get-events "" "rj")
     (cl-lastfm:lastfm-request-error (condition)
       (assert-error 'lastfm-request-error condition)
       (assert-equal "10" (request-error-code-of condition)))))
