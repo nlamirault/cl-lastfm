@@ -9,4 +9,4 @@
 (ql:quickload "cl-lastfm")
 (ql:quickload "cl-lastfm-test")
 
-(cl-lastfm-test:run-cl-lastfm-test)
+(lisp-unit:run-tests :all :cl-lastfm-test)
