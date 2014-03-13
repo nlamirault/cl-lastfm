@@ -5,8 +5,6 @@
 (in-package #:cl-lastfm-test)
 
 
-(defparameter *api-key* (sb-posix:getenv "CL-LASTFM-API-KEY"))
-
 (define-test cant-get-user-events-without-api-key
   (handler-case
       (user-get-events "" "rj")

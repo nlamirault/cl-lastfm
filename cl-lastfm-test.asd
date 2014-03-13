@@ -29,13 +29,13 @@
     ((:module :test
               :components
               ((:file "package")
-               ;; (:file "specials" :depends-on ("package"))
+	       (:file "setup" :depends-on ("package"))
                ;; (:file "lastfm-tests" :depends-on ("specials"))
                ;; (:file "albums" :depends-on ("lastfm-tests"))
                ;; (:file "artists" :depends-on ("lastfm-tests"))
                ;; (:file "geo" :depends-on ("lastfm-tests"))
-               (:file "users" :depends-on ("package"))
-               ;; (:file "events" :depends-on ("lastfm-tests"))
+               (:file "users" :depends-on ("setup"))
+	       (:file "events" :depends-on ("setup"))
                ;; (:file "library" :depends-on ("lastfm-tests"))
                ;; (:file "tag" :depends-on ("lastfm-tests"))
                ;; (:file "track" :depends-on ("lastfm-tests"))

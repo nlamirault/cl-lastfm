@@ -9,7 +9,7 @@
 (ql:quickload "cl-lastfm")
 (ql:quickload "cl-lastfm-test")
 
-(format t "API Key: ~A" (sb-posix:getenv "CL-LASTFM-API-KEY"))
+(format t "API Key: ~A" (sb-posix:getenv "CL_LASTFM_API_KEY"))
 
 (setq lisp-unit:*print-failures* t)
 (setq lisp-unit:*print-errors* t)
