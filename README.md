@@ -1,13 +1,11 @@
-cl-lastfm
-=========
+# cl-lastfm
 
 [![Build Status](http://img.shields.io/travis/nlamirault/cl-lastfm.svg)](https://travis-ci.org/nlamirault/cl-lastfm)
 
 
 A Common Lisp wrapper around [Last.fm](http://www.last.fm) 2.0 web service.
 
-API
-===
+## API
 
 The Last.fm Web Services API is described here :
 
@@ -15,8 +13,7 @@ The Last.fm Web Services API is described here :
 
 cl-lastfm implements theses features :
 
-Album
-------
+### Album
 
     [ ] album.addTags
 	[x] album.getInfo
@@ -24,8 +21,7 @@ Album
 	[ ] album.removeTag
 	[x] album.search
 
-Artist
--------
+### Artist
 
     [ ] artist.addTags
 	[x] artist.getEvents
@@ -40,31 +36,27 @@ Artist
 	[x] artist.search
 	[ ] artist.share
 
-Auth
-----
+### Auth
 
 	[ ] auth.getMobileSession
 	[ ] auth.getSession
 	[ ] auth.getToken
 	[ ] auth.getWebSession
 
-Event
-------
+### Event
 
 	[ ] event.attend
 	[x] event.getInfo
 	[ ] event.getShouts
 	[ ] event.share
 
-Geo
----
+### Geo
 
 	[x] geo.getEvents
 	[x] geo.getTopArtists
 	[x] geo.getTopTracks
 
-Group
-------
+### Group
 
 	[x] group.getmembers
 	[x] group.getWeeklyAlbumChart
@@ -73,8 +65,7 @@ Group
 	[x] group.getWeeklyTrackChart
 
 
-Library
---------
+### Library
 
 	[ ] library.addAlbum
 	[ ] library.addArtist
@@ -83,15 +74,13 @@ Library
 	[x] library.getArtists
 	[x] library.getTracks
 
-Playlist
----------
+### Playlist
 
 	[ ] playlist.addTrack
 	[ ] playlist.create
 	[ ] playlist.fetch
 
-Tag
-----
+### Tag
 
 	[x] tag.getSimilar
 	[x] tag.getTopAlbums
@@ -102,13 +91,11 @@ Tag
 	[x] tag.getWeeklyChartList
 	[x] tag.search
 
-Tasteometer
--------------
+### Tasteometer
 
 	[x] tasteometer.compare
 
-Track
-------
+### Track
 
 	[ ] track.addTags
 	[ ] track.ban
@@ -122,8 +109,7 @@ Track
 	[x] track.search
 	[ ] track.share
 
-User
------
+### User
 
 	[x] user.getEvents
 	[x] user.getFriends
