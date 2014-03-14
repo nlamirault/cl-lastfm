@@ -24,7 +24,9 @@ init() {
 }
 
 ci() {
-    sbcl --script ci/$PROJECT-ci.lisp
+    sbcl --script ci/$PROJECT-ci.lisp >> output.logs
+    cat output.logs
+    grep "| 0 failed" output.logs
 }
 
 cleanup

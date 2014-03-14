@@ -15,13 +15,13 @@
 
 (define-test can-get-user-events-with-name
   (format t "API Key: ~A" (sb-posix:getenv "CL-LASTFM-API-KEY"))
-  (let ((response (user-get-events *api-key* "rj")))
+  (let ((sum 0)
+	(response (user-get-events *api-key* "rj")))
     (assert-true (cl-ppcre:scan "<lfm status=\"ok\">" response))
     (assert-true (cl-ppcre:scan "<events " response))
-    (let ((sum 0))
-      (cl-ppcre:do-matches (s e "<user>" response)
-        (incf sum))
-      (assert-true (>= sum 0)))))
+    (cl-ppcre:do-matches (s e "<user>" response)
+      (incf sum))
+    (assert-true (>= sum 0))))
 
 (define-test test-event-get-info
   (let ((response
@@ -33,3 +33,13 @@
     (assert-true (cl-ppcre:scan
                   "<artist>Orchestra and Chorus of Erfurt Theatre</artist>"
                   response))))
+
+(define-test test-user-friends
+  (let ((sum 0)
+	(response
+         (cl-lastfm:user-get-friends *api-key* "rj")))
+    (assert-true (cl-ppcre:scan "<lfm status=\"ok\">" response))
+    (assert-true (cl-ppcre:scan "<friends for=\"RJ\" " response))
+    (cl-ppcre:do-matches (s e "<user>" response)
+      (incf sum))
+    (assert-true (>= sum 0))))
