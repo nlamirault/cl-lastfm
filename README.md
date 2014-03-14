@@ -13,6 +13,16 @@ Add the projet and load it using [Quicklisp](http://www.quicklisp.org):
     CL-USER> (push #p"/projects/cl-lastfm/" asdf:*central-registry*)
     CL-USER> (ql:quickload "cl-lastfm")
 
+## Hacking
+
+Fork, hack and run unit tests:
+
+    CL-USER> (setq lisp-unit:*print-failures* t)
+	CL-USER> (setq lisp-unit:*print-errors* t)
+	CL-USER> (setq lisp-unit:*print-summary* t)
+	CL-USER> (setf cl-lastfm-test::*api-key* "xxxx")
+	CL-USER> (lisp-unit:run-tests :all :cl-lastfm-test)
+
 ## Usage
 
 Get a LastFM [API Key](http://www.lastfm.fr/api/accounts) and make some requests:
