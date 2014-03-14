@@ -1,6 +1,8 @@
 # cl-lastfm
 
 [![Build Status](http://img.shields.io/travis/nlamirault/cl-lastfm.svg)](https://travis-ci.org/nlamirault/cl-lastfm)
+[![Build Status](https://drone.io/github.com/nlamirault/cl-lastfm/status.png)](https://drone.io/github.com/nlamirault/cl-lastfm/latest)
+
 
 A Common Lisp wrapper around [Last.fm](http://www.last.fm) 2.0 web service.
 
