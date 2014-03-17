@@ -1,5 +1,9 @@
 # cl-lastfm ChangeLog
 
+## Version 0.2.1 (2014-03-17)
+
+- Retrieve an environment variable should be portable.
+
 ## Version 0.2 (2014-03-04)
 
 - Migrating unit tests to [LispUnit](https://github.com/OdonataResearchLLC/lisp-unit)
