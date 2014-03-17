@@ -160,6 +160,11 @@ cl-lastfm implements theses features :
 A changelog is available [here](ChangeLog.md).
 
 
+## Copyright and license
+
+Code and documentation (c) Nicolas Lamirault. Code released under [the MIT license](LICENSE).
+
+
 ## Contact
 
 Nicolas Lamirault <nicolas.lamirault@gmail.com>

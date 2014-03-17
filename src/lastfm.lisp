@@ -1,17 +1,21 @@
-;;; *************************************************************************
-;;;; FILE IDENTIFICATION
-;;;;
-;;;; Name:          lastfm.lisp
-;;;; Purpose:       Common Lisp LastFM.
-;;;; Programmer:    Nicolas Lamirault <nicolas.lamirault@gmail.com>
-;;;;
-;;;; This file, part of cl-lastfm, is Copyright (c) 2009 by Nicolas Lamirault
-;;;;
-;;;; cl-lastfm users are granted the rights to distribute and use this software
-;;;; as governed by the terms of the MIT License :
-;;;; http://www.opensource.org/licenses/mit-license.php
-;;;;
-;;;; *************************************************************************
+;; Copyright (C) 2014  Nicolas Lamirault
+
+;; Permission is hereby granted, free of charge, to any person obtaining a copy
+;; of this software and associated documentation files (the "Software"), to deal
+;; in the Software without restriction, including without limitation the rights
+;; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+;; copies of the Software, and to permit persons to whom the Software is
+;; furnished to do so, subject to the following conditions:
+;; The above copyright notice and this permission notice shall be included in
+;; all copies or substantial portions of the Software.
+
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+;; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+;; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+;; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+;; THE SOFTWARE.
 
 
 (in-package :cl-lastfm)
@@ -63,16 +67,16 @@ ISO 639 alpha-2 code}
         (format stream "&lang=~A" (url-encode-utf8 lang)))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
-    
+
 
 (defun album-search (api-key album-name &key (limit 30) (page 1))
   "@short{Search for an album by name. Returns album matches sorted by relevance.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[album-name]{The album name in question}
-@arg[limit]{Limit the number of albums returned at one time. Default (maximum) 
+@arg[limit]{Limit the number of albums returned at one time. Default (maximum)
 is 30}
-@arg[page]{Scan into the results by specifying a page number. Defaults to 
+@arg[page]{Scan into the results by specifying a page number. Defaults to
 first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
@@ -91,7 +95,7 @@ first page}
     (perform-lastfm-query uri)))
 
 
-    
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Artists
@@ -100,7 +104,7 @@ first page}
 
 (defun artist-get-events (api-key artist-name)
   "@short{Get a list of upcoming events for this artist. Easily integratable
-into calendars, using the ical standard. 
+into calendars, using the ical standard.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -116,7 +120,7 @@ This service does not require authentication.}
 
 
 (defun artist-get-info (api-key &key artist-name mbid lang)
-  "@short{Get the metadata for an artist on Last.fm. Includes biography. . 
+  "@short{Get the metadata for an artist on Last.fm. Includes biography. .
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -139,7 +143,7 @@ alpha-2 code}
 
 
 (defun artist-get-similar (api-key artist-name &optional limit)
-  "@short{Get all the artists similar to this artist. 
+  "@short{Get all the artists similar to this artist.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -161,7 +165,7 @@ This service does not require authentication.}
 
 
 (defun artist-get-top-albums (api-key artist-name)
-  "@short{Get the top albums for an artist on Last.fm, ordered by popularity. 
+  "@short{Get the top albums for an artist on Last.fm, ordered by popularity.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -178,7 +182,7 @@ This service does not require authentication.}
 
 
 (defun artist-get-top-fans (api-key artist-name)
-  "@short{Get the top fans for an artist on Last.fm, based on listening data. 
+  "@short{Get the top fans for an artist on Last.fm, based on listening data.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -195,7 +199,7 @@ This service does not require authentication.}
 
 
 (defun artist-get-top-tags (api-key artist-name)
-  "@short{Get the top tags for an artist on Last.fm, ordered by popularity. 
+  "@short{Get the top tags for an artist on Last.fm, ordered by popularity.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
@@ -229,13 +233,13 @@ This service does not require authentication.}
 
 (defun artist-search (api-key artist-name &key (limit 30) (page 1))
   "@short{Search for an artist by name. Returns artist matches sorted by
-relevance. 
+relevance.
 This service does not require authentication.}
 @arg[api-key]{A Last.fm API key}
 @arg[artist-name]{The artist name in question}
-@arg[limit]{Limit the number of artists returned at one time. Default 
+@arg[limit]{Limit the number of artists returned at one time. Default
 (maximum) is 30}
-@arg[page]{Scan into the results by specifying a page number. Defaults to 
+@arg[page]{Scan into the results by specifying a page number. Defaults to
 first page}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
@@ -267,11 +271,11 @@ first page}
   "@short{Get all events in a specific location by country or city name.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[location]{Specifies a location to retrieve events for (service returns 
+@arg[location]{Specifies a location to retrieve events for (service returns
 nearby events by default}
-@arg[lat]{Specifies a latitude value to retrieve events for (service returns 
+@arg[lat]{Specifies a latitude value to retrieve events for (service returns
 nearby events by default}
-@arg[long]{Specifies a longitude value to retrieve events for (service returns 
+@arg[long]{Specifies a longitude value to retrieve events for (service returns
 nearby events by default)}
 @arg[page]{Display more results by pagination}
 @arg[distance]{Find events within a specified distance}
@@ -299,7 +303,7 @@ nearby events by default)}
   "@short{Get the most popular artists on Last.fm by country.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[country-name]{A country name, as defined by the ISO 3166-1 country names 
+@arg[country-name]{A country name, as defined by the ISO 3166-1 country names
 standard}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
@@ -316,9 +320,9 @@ standard}
   "@short{Get the most popular tracks on Last.fm by country .
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
-@arg[country-name]{A country name, as defined by the ISO 3166-1 country names 
+@arg[country-name]{A country name, as defined by the ISO 3166-1 country names
 standard}
-@arg[location]{A metro name, to fetch the charts for (must be within the country 
+@arg[location]{A metro name, to fetch the charts for (must be within the country
 specified)}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
@@ -345,7 +349,7 @@ specified)}
 
 
 (defun user-get-events (api-key user)
-  "@short{Get a list of upcoming events that this user is attending. 
+  "@short{Get a list of upcoming events that this user is attending.
 Easily integratable into calendars, using the ical standard.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
@@ -367,7 +371,7 @@ This service does not require authentication}
 @arg[user]{The last.fm username to fetch the friends of}
 @arg[limit]{An integer used to limit the number of friends returned}
 @arg[page]{An integer representing the page number to fetch. Defaults to first page}
-@arg[recenttracks]{Whether or not to include information about friends' recent 
+@arg[recenttracks]{Whether or not to include information about friends' recent
 listening in the response}
 @see-condition{lastfm-request-error}
 @return{An XML stream}"
@@ -390,7 +394,7 @@ listening in the response}
 
 
 (defun user-get-loved-tracks (api-key user &key limit page)
-  "@short{Get the last 50 tracks loved by a user. 
+  "@short{Get the last 50 tracks loved by a user.
 This service does not require authentication}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch the loved tracks for}
@@ -433,11 +437,11 @@ This service does not require authentication}
 
 
 (defun user-get-top-albums (api-key user &key period limit page)
-    "@short{Get the top albums listened to by a user. You can stipulate a time 
+    "@short{Get the top albums listened to by a user. You can stipulate a time
 period. Sends the overall chart by default}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top albums for}
-@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+@arg[period]{overall | 3month | 6month | 12month - The time period over which
 to retrieve top albums for.}
 @arg[limit]{The number of results to fetch per page. Defaults to 50}
 @arg[page]{The page number to fetch. Defaults to first page}
@@ -462,11 +466,11 @@ to retrieve top albums for.}
 
 
 (defun user-get-top-artists (api-key user &key period limit page)
-    "@short{Get the top artists listened to by a user. You can stipulate a time 
+    "@short{Get the top artists listened to by a user. You can stipulate a time
 period. Sends the overall chart by default.}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top artists for}
-@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+@arg[period]{overall | 3month | 6month | 12month - The time period over which
 to retrieve top albums for.}
 @arg[limit]{The number of results to fetch per page. Defaults to 50}
 @arg[page]{The page number to fetch. Defaults to first page}
@@ -508,11 +512,11 @@ to retrieve top albums for.}
 
 
 (defun user-get-top-tracks (api-key user &key period limit page)
-    "@short{Get the top tracks listened to by a user. You can stipulate a time 
+    "@short{Get the top tracks listened to by a user. You can stipulate a time
 period. Sends the overall chart by default. }
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch top tracks for}
-@arg[period]{overall | 3month | 6month | 12month - The time period over which 
+@arg[period]{overall | 3month | 6month | 12month - The time period over which
 to retrieve top tracks for.}
 @arg[limit]{The number of results to fetch per page. Defaults to 50}
 @arg[page]{The page number to fetch. Defaults to first page}
@@ -536,7 +540,7 @@ to retrieve top tracks for.}
 
 
 (defun user-get-recent-tracks (api-key user &key limit)
-  "@short{Get a list of the recent tracks listened to by this user. Indicates 
+  "@short{Get a list of the recent tracks listened to by this user. Indicates
 now playing track if the user is currently listening}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user name to fetch the recent tracks of}
@@ -569,8 +573,8 @@ now playing track if the user is currently listening}
 
 
 (defun user-get-weekly-album-chart (api-key user &key from to)
-  "@short{Get an album chart for a user profile, for a given date range. 
-If no date range is supplied, it will return the most recent album chart for 
+  "@short{Get an album chart for a user profile, for a given date range.
+If no date range is supplied, it will return the most recent album chart for
 this user.}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the charts of}
@@ -593,8 +597,8 @@ this user.}
 
 
 (defun user-get-weekly-artist-chart (api-key user &key from to)
-  "@short{Get an artist chart for a user profile, for a given date range. 
-If no date range is supplied, it will return the most recent artist chart for 
+  "@short{Get an artist chart for a user profile, for a given date range.
+If no date range is supplied, it will return the most recent artist chart for
 this user.}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the charts of}
@@ -617,7 +621,7 @@ this user.}
 
 
 (defun user-get-weekly-chart-list (api-key user)
-  "@short{Get a list of available charts for this user, expressed as date 
+  "@short{Get a list of available charts for this user, expressed as date
 ranges which can be sent to the chart services}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the charts list for}
@@ -632,8 +636,8 @@ ranges which can be sent to the chart services}
 
 
 (defun user-get-weekly-track-chart (api-key user &key from to)
-  "@short{Get a track chart for a user profile, for a given date range. 
-If no date range is supplied, it will return the most recent track chart 
+  "@short{Get a track chart for a user profile, for a given date range.
+If no date range is supplied, it will return the most recent track chart
 for this user}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The last.fm username to fetch the charts of}
@@ -676,11 +680,11 @@ This service does not require authentication}
       (format stream "&group=~A" (url-encode-utf8 group))
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
-  
+
 
 
 (defun group-get-weekly-album-chart (api-key group &key from to)
-  "@short{Get an album chart for a group, for a given date range. If no date range 
+  "@short{Get an album chart for a group, for a given date range. If no date range
 is supplied, it will return the most recent album chart for this group.}
 @arg[api_key]{A Last.fm API key}
 @arg[group]{The last.fm group name to fetch the charts of}
@@ -703,7 +707,7 @@ is supplied, it will return the most recent album chart for this group.}
 
 
 (defun group-get-weekly-artist-chart (api-key group &key from to)
-  "@short{Get an artist chart for a group, for a given date range. If no date 
+  "@short{Get an artist chart for a group, for a given date range. If no date
 range is supplied, it will return the most recent album chart for this group}
 @arg[api_key]{A Last.fm API key}
 @arg[group]{The last.fm group name to fetch the charts of}
@@ -724,9 +728,9 @@ range is supplied, it will return the most recent album chart for this group}
       (setf uri (get-output-stream-string stream)))
     (perform-lastfm-query uri)))
 
-  
+
 (defun group-get-weekly-chart-list (api-key group)
-  "@short{Get a list of available charts for this group, expressed as date 
+  "@short{Get a list of available charts for this group, expressed as date
 ranges which can be sent to the chart services}
 @arg[api_key]{A Last.fm API key}
 @arg[group]{The last.fm group name to fetch the charts list for}
@@ -741,7 +745,7 @@ ranges which can be sent to the chart services}
 
 
 (defun group-get-weekly-track-chart (api-key group &key from to)
-  "@short{Get a track chart for a group, for a given date range. If no date 
+  "@short{Get a track chart for a group, for a given date range. If no date
 range is supplied, it will return the most recent album chart for this group}
 @arg[api_key]{A Last.fm API key}
 @arg[group]{The last.fm group name to fetch the charts of}
@@ -765,21 +769,21 @@ range is supplied, it will return the most recent album chart for this group}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Tasteometer 
+;; Tasteometer
 ;;
 
 
 (defun tasteometer-compare (api-key first-type second-type first-value second-value
                             &key (limit 5))
-  "@short{Get a Tasteometer score from two inputs, along with a list of 
-shared artists. If the input is a User or a Myspace URL, some additional 
+  "@short{Get a Tasteometer score from two inputs, along with a list of
+shared artists. If the input is a User or a Myspace URL, some additional
 information is returned.}
 @arg[api_key]{A Last.fm API key}
 @arg[fisrt-type]{Must be user, artists or myspace}
 @arg[second-type]{Must be user, artists or myspace}
-@arg[first-value]{Must be : Last.fm username or comma-separated artist names 
+@arg[first-value]{Must be : Last.fm username or comma-separated artist names
 or a MySpace profile URL}
-@arg[second-value]{Must be : Last.fm username or comma-separated artist names 
+@arg[second-value]{Must be : Last.fm username or comma-separated artist names
 or a MySpace profile URL}
 @arg[limit]{How many shared artists to display}
 @see-condition{lastfm-request-error}
@@ -788,8 +792,8 @@ or a MySpace profile URL}
     (format stream +tasteometer-compare+
             api-key
             first-type second-type first-value second-value limit)))
-            
-            
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -798,7 +802,7 @@ or a MySpace profile URL}
 
 
 (defun event-get-info (api-key eventid)
-  "@short{Get the metadata for an event on Last.fm. Includes attendance 
+  "@short{Get the metadata for an event on Last.fm. Includes attendance
 and lineup information}
 @arg[api_key]{A Last.fm API key}
 @arg[eventid]{The numeric Last.fm event id}
@@ -828,7 +832,7 @@ and lineup information}
 
 
 (defun library-get-albums (api-key user &key page (limit 49))
-"@short{A paginated list of all the albums in a user's library, with play 
+"@short{A paginated list of all the albums in a user's library, with play
 counts and tag counts}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user whose library you want to fetch}
@@ -846,7 +850,7 @@ counts and tag counts}
 
 
 (defun library-get-artists (api-key user &key page (limit 49))
-"@short{A paginated list of all the artists in a user's library, with play 
+"@short{A paginated list of all the artists in a user's library, with play
 counts and tag counts}
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user whose library you want to fetch}
@@ -863,7 +867,7 @@ counts and tag counts}
 
 
 (defun library-get-tracks (api-key user &key page (limit 49))
-"@short{A paginated list of all the tracks in a user's library, with play 
+"@short{A paginated list of all the tracks in a user's library, with play
 counts and tag counts. }
 @arg[api_key]{A Last.fm API key}
 @arg[user]{The user whose library you want to fetch}
@@ -877,8 +881,8 @@ counts and tag counts. }
       (format stream "&page=~A" page))
     (when limit
       (format stream "&limit=~A" limit))))
-      
-  
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -888,7 +892,7 @@ counts and tag counts. }
 
 
 (defun tag-get-similar (api-key tag)
-  "@short{Search for tags similar to this one. Returns tags ranked by 
+  "@short{Search for tags similar to this one. Returns tags ranked by
 similarity, based on listening data}
 @arg[api_key]{A Last.fm API key}
 @arg[tag]{The tag name in question}
@@ -929,7 +933,7 @@ similarity, based on listening data}
 
 
 (defun tag-get-top-tags (api-key)
-  "@short{Fetches the top global tags on Last.fm, sorted by popularity 
+  "@short{Fetches the top global tags on Last.fm, sorted by popularity
 (number of times used).}
 @arg[api_key]{A Last.fm API key}
 @see-condition{lastfm-request-error}
@@ -939,8 +943,8 @@ similarity, based on listening data}
 
 
 (defun tag-get-weekly-artist-chart (api-key tag &key from to limit)
-"@short{Get an artist chart for a tag, for a given date range. 
-If no date range is supplied, it will return the most recent artist chart 
+"@short{Get an artist chart for a tag, for a given date range.
+If no date range is supplied, it will return the most recent artist chart
 for this tag}
 @arg[api_key]{A Last.fm API key}
 @arg[tag]{The tag name in question}
@@ -962,7 +966,7 @@ for this tag}
 
 
 (defun tag-get-weekly-chart-list (api-key tag)
-  "@short{Get a list of available charts for this tag, expressed as date 
+  "@short{Get a list of available charts for this tag, expressed as date
 ranges which can be sent to the chart services}
 @arg[api_key]{A Last.fm API key}
 @arg[tag]{The tag name in question}
@@ -987,8 +991,8 @@ ranges which can be sent to the chart services}
     (when limit
       (format stream "&limit=~A" limit))))
 
-    
-    
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -999,7 +1003,7 @@ ranges which can be sent to the chart services}
 
 
 (defun track-get-info (api-key &key artist track mbid)
-  "@short{Get the metadata for a track on Last.fm using the artist/track name 
+  "@short{Get the metadata for a track on Last.fm using the artist/track name
 or a musicbrainz id}
 @arg[api-key]{A Last.fm API key}
 @arg[artist]{The artist name in question}
@@ -1021,7 +1025,7 @@ or a musicbrainz id}
 
 
 (defun track-get-similar (api-key &key artist track mbid)
-  "@short{Get the similar tracks for this track on Last.fm, based on 
+  "@short{Get the similar tracks for this track on Last.fm, based on
 listening data}
 @arg[api-key]{A Last.fm API key}
 @arg[artist]{The artist name in question}
@@ -1044,7 +1048,7 @@ listening data}
 
 
 (defun track-get-top-fans (api-key &key artist track mbid)
-  "@short{Get the top fans for this track on Last.fm, based on listening data. 
+  "@short{Get the top fans for this track on Last.fm, based on listening data.
 Supply either track & artist name or musicbrainz id}
 @arg[api-key]{A Last.fm API key}
 @arg[artist]{The artist name in question}
@@ -1066,7 +1070,7 @@ Supply either track & artist name or musicbrainz id}
 
 
 (defun track-get-top-tags (api-key &key artist track mbid)
-  "@short{Get the top tags for this track on Last.fm, ordered by tag count. 
+  "@short{Get the top tags for this track on Last.fm, ordered by tag count.
 Supply either track & artist name or mbid}
 @arg[api-key]{A Last.fm API key}
 @arg[artist]{The artist name in question}
@@ -1088,7 +1092,7 @@ Supply either track & artist name or mbid}
 
 
 (defun track-search (api-key track &key artist (page 1) (limit 29))
-  "@short{Search for a track by track name. Returns track matches sorted by 
+  "@short{Search for a track by track name. Returns track matches sorted by
 relevance}
 @arg[api-key]{A Last.fm API key}
 @arg[track]{The track name in question}
@@ -1105,7 +1109,3 @@ relevance}
       (format stream "&page=~A" page))
     (when limit
       (format stream "&limit=~A" limit))))
-
-
-
-
